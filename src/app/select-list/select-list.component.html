@@ -1,0 +1,11 @@
+<div class="list-group mx-0">
+  <label *ngFor="let listItem of items" class="list-group-item d-flex gap-2">
+    <input
+      class="form-check-input flex-shrink-0"
+      type="checkbox"
+      [(ngModel)]="listItem.value"
+      (ngModelChange)="onListChange()"
+    />
+    <span>{{ listItem.name }}</span>
+  </label>
+</div>
