@@ -6,6 +6,9 @@
       [(ngModel)]="listItem.value"
       (ngModelChange)="onListChange()"
     />
-    <span>{{ listItem.name }}</span>
+    <span>
+      {{ listItem.name }}
+      <small class="d-block text-muted">{{ listItem.description }}</small>
+    </span>
   </label>
 </div>
