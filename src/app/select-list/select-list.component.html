@@ -16,15 +16,11 @@
       [(ngModel)]="listItem.value"
       (ngModelChange)="onListChange()"
     />
-    <input
-      *ngIf="!allowMultiple"
-      class="form-check-input flex-shrink-0"
-      type="radio"
-      name="select-list-item"
-      [value]="listItem.id"
-      [ngModel]="selectedListItem?.id"
-      (ngModelChange)="onSingleChange($event)"
-    />
+
+    <ng-container
+      [ngTemplateOutlet]="listItemTypeTemplateRef"
+      [ngTemplateOutletContext]="{ $implicit: listItem }"
+    ></ng-container>
 
     <ng-container
       [ngTemplateOutlet]="listItemTemplateRef"

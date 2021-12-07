@@ -30,6 +30,9 @@ export class SelectListComponent implements OnInit, AfterContentInit {
   @ContentChild('listItemTmpl')
   listItemTemplateRef!: TemplateRef<any>;
 
+  @ContentChild('listItemType')
+  listItemTypeTemplateRef!: TemplateRef<any>
+
   @ContentChild(FilterComponent)
   filterCmp!: FilterComponent;
 
@@ -53,16 +56,12 @@ export class SelectListComponent implements OnInit, AfterContentInit {
     }
   }
 
-  onListChange() {
-    const selected = this.items.filter((item) => !!item.value);
-    this.selectedChange.next(selected);
+  onSelectedItemsChange(items: SelectListItemDefinition[]) {
+    this.selectedChange.next(items);
   }
 
-  onSingleChange(selectedId: number) {
-    this.selectedListItem =
-      this.items.find((item) => item.id === selectedId) ?? null;
-    const selected = this.selectedListItem ? [this.selectedListItem] : [];
-
+  onListChange() {
+    const selected = this.items.filter((item) => !!item.value);
     this.selectedChange.next(selected);
   }
 }

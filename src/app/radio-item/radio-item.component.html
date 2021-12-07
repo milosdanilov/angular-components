@@ -1,0 +1,8 @@
+<input
+  class="form-check-input flex-shrink-0"
+  type="radio"
+  name="select-list-item"
+  [value]="item.id"
+  [ngModel]="selectListCmp.selectedListItem?.id"
+  (ngModelChange)="onSingleChange($event)"
+/>

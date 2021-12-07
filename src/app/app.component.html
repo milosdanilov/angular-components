@@ -7,6 +7,10 @@
 
   <span>Selected: {{ selectedListItems[0]?.name }}</span>
 
+  <ng-template #listItemType let-listItem>
+    <app-radio-item [item]="listItem"></app-radio-item>
+  </ng-template>
+
   <ng-template #listItemTmpl let-listItem>
     <span>
       {{ listItem.name }}
