@@ -1,22 +1,12 @@
 <ng-content select="app-filter"></ng-content>
 
-<div *ngIf="!allowMultiple">
-  <ng-content></ng-content>
-</div>
+<ng-content select=".selected-item"></ng-content>
 
 <div class="list-group mx-0">
   <label
     *ngFor="let listItem of filteredItems"
     class="list-group-item d-flex gap-2"
   >
-    <input
-      *ngIf="allowMultiple"
-      class="form-check-input flex-shrink-0"
-      type="checkbox"
-      [(ngModel)]="listItem.value"
-      (ngModelChange)="onListChange()"
-    />
-
     <ng-container
       [ngTemplateOutlet]="listItemTypeTemplateRef"
       [ngTemplateOutletContext]="{ $implicit: listItem }"

@@ -21,9 +21,6 @@ export class SelectListComponent implements OnInit, AfterContentInit {
   @Input()
   items: SelectListItemDefinition[] = [];
 
-  @Input()
-  allowMultiple = true;
-
   @Output()
   selectedChange = new EventEmitter<SelectListItemDefinition[]>();
 
@@ -58,10 +55,5 @@ export class SelectListComponent implements OnInit, AfterContentInit {
 
   onSelectedItemsChange(items: SelectListItemDefinition[]) {
     this.selectedChange.next(items);
-  }
-
-  onListChange() {
-    const selected = this.items.filter((item) => !!item.value);
-    this.selectedChange.next(selected);
   }
 }

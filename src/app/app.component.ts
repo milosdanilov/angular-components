@@ -37,5 +37,6 @@ export class AppComponent implements OnInit {
 
   onSelectedChange(list: SelectListItemDefinition[]) {
     this.selectedListItems = list;
+    console.log(this.selectedListItems);
   }
 }

@@ -1,14 +1,33 @@
-<app-select-list
+<!-- <app-select-list
   [items]="listItems"
-  [allowMultiple]="false"
   (selectedChange)="onSelectedChange($event)"
 >
   <app-filter></app-filter>
 
-  <span>Selected: {{ selectedListItems[0]?.name }}</span>
+  <span class="selected-item">Selected: {{ selectedListItems[0]?.name }}</span>
 
   <ng-template #listItemType let-listItem>
     <app-radio-item [item]="listItem"></app-radio-item>
+  </ng-template>
+
+  <ng-template #listItemTmpl let-listItem>
+    <span>
+      {{ listItem.name }}
+      <small class="d-block text-muted">{{ listItem.description }}</small>
+    </span>
+  </ng-template>
+
+</app-select-list> -->
+
+
+<app-select-list
+  [items]="listItems"
+  (selectedChange)="onSelectedChange($event)"
+>
+  <app-filter></app-filter>
+
+  <ng-template #listItemType let-listItem>
+    <app-checkbox-item [item]="listItem"></app-checkbox-item>
   </ng-template>
 
   <ng-template #listItemTmpl let-listItem>
