@@ -15,6 +15,9 @@ export class SelectListComponent implements OnInit {
   @Input()
   allowFilter = false;
 
+  @Input()
+  allowMultiple = true;
+
   @Output()
   selectedChange = new EventEmitter<SelectListItemDefinition[]>();
 
@@ -23,8 +26,12 @@ export class SelectListComponent implements OnInit {
 
   filteredItems!: SelectListItemDefinition[];
 
+  selectedListItem!: SelectListItemDefinition | null;
+
   ngOnInit() {
     this.filteredItems = this.items;
+
+    this.selectedListItem = this.items.find(item => !!item.value) ?? null;
 
     this.search$.subscribe(term => {
       this.filteredItems = this.items.filter(item => item.name.toLowerCase().includes(term));
@@ -33,6 +40,13 @@ export class SelectListComponent implements OnInit {
 
   onListChange() {
     const selected = this.items.filter((item) => !!item.value);
+    this.selectedChange.next(selected);
+  }
+
+  onSingleChange(selectedId: number) {
+    this.selectedListItem = this.items.find(item => item.id === selectedId) ?? null;
+    const selected = this.selectedListItem ? [this.selectedListItem] : [];
+
     this.selectedChange.next(selected);
   }
 }

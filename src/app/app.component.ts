@@ -9,16 +9,19 @@ import { SelectListItemDefinition } from './select-list/select-list.interface';
 export class AppComponent {
   listItems: SelectListItemDefinition[] = [
     {
+      id: 1,
       name: 'First checkbox',
       value: false,
       description: 'With support text underneath to add more detail',
     },
     {
+      id: 2,
       name: 'Second checkbox',
       value: true,
       description: 'Some other text goes here',
     },
     {
+      id: 3,
       name: 'Third checkbox',
       value: false,
       description: 'And we end with another snippet of text',
