@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { Subject } from 'rxjs';
 
 import { SelectListItemDefinition } from './select-list.interface';
@@ -20,6 +20,9 @@ export class SelectListComponent implements OnInit {
 
   @Output()
   selectedChange = new EventEmitter<SelectListItemDefinition[]>();
+
+  @ContentChild('listItemTmpl')
+  listItemTemplateRef!: TemplateRef<any>;
 
   searchTerm: string = '';
   search$ = new Subject<string>();

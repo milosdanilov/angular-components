@@ -35,9 +35,10 @@
       [ngModel]="selectedListItem?.id"
       (ngModelChange)="onSingleChange($event)"
     />
-    <span>
-      {{ listItem.name }}
-      <small class="d-block text-muted">{{ listItem.description }}</small>
-    </span>
+
+    <ng-container
+      [ngTemplateOutlet]="listItemTemplateRef"
+      [ngTemplateOutletContext]="{ $implicit: listItem }"></ng-container>
+
   </label>
 </div>
