@@ -4,3 +4,8 @@
   [(ngModel)]="item.value"
   (ngModelChange)="onListChange()"
 />
+
+<ng-container
+  [ngTemplateOutlet]="listItemTemplateRef"
+  [ngTemplateOutletContext]="{ $implicit: item }"
+></ng-container>

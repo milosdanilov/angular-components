@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ContentChild, Input, OnInit, TemplateRef } from '@angular/core';
 
 import { SelectListComponent } from '../select-list/select-list.component';
 import { SelectListItemDefinition } from '../select-list/select-list.interface';
@@ -11,6 +11,9 @@ import { SelectListItemDefinition } from '../select-list/select-list.interface';
 export class RadioItemComponent implements OnInit {
   @Input()
   item!: SelectListItemDefinition;
+
+  @ContentChild('listItemTmpl')
+  listItemTemplateRef!: TemplateRef<any>;
 
   constructor(public selectListCmp: SelectListComponent) {}
 

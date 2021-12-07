@@ -6,3 +6,8 @@
   [ngModel]="selectListCmp.selectedListItem?.id"
   (ngModelChange)="onSingleChange($event)"
 />
+
+<ng-container
+  [ngTemplateOutlet]="listItemTemplateRef"
+  [ngTemplateOutletContext]="{ $implicit: item }"
+></ng-container>

@@ -24,9 +24,6 @@ export class SelectListComponent implements OnInit, AfterContentInit {
   @Output()
   selectedChange = new EventEmitter<SelectListItemDefinition[]>();
 
-  @ContentChild('listItemTmpl')
-  listItemTemplateRef!: TemplateRef<any>;
-
   @ContentChild('listItemType')
   listItemTypeTemplateRef!: TemplateRef<any>
 

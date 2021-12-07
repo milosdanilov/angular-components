@@ -19,7 +19,6 @@
 
 </app-select-list> -->
 
-
 <app-select-list
   [items]="listItems"
   (selectedChange)="onSelectedChange($event)"
@@ -27,14 +26,13 @@
   <app-filter></app-filter>
 
   <ng-template #listItemType let-listItem>
-    <app-checkbox-item [item]="listItem"></app-checkbox-item>
+    <app-checkbox-item [item]="listItem">
+      <ng-template #listItemTmpl let-listItem>
+        <span>
+          {{ listItem.name }}
+          <small class="d-block text-muted">{{ listItem.description }}</small>
+        </span>
+      </ng-template>
+    </app-checkbox-item>
   </ng-template>
-
-  <ng-template #listItemTmpl let-listItem>
-    <span>
-      {{ listItem.name }}
-      <small class="d-block text-muted">{{ listItem.description }}</small>
-    </span>
-  </ng-template>
-
 </app-select-list>
