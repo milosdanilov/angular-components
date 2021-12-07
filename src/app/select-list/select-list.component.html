@@ -1,7 +1,4 @@
-<app-filter
-  *ngIf="allowFilter"
-  (searchChange)="search$.next($event)"
-></app-filter>
+<ng-content select="app-filter"></ng-content>
 
 <div *ngIf="!allowMultiple">
   <ng-content></ng-content>

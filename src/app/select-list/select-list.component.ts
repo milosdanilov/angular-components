@@ -1,5 +1,14 @@
-import { Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
-import { Subject } from 'rxjs';
+import {
+  AfterContentInit,
+  Component,
+  ContentChild,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  TemplateRef,
+} from '@angular/core';
+import { FilterComponent } from '../filter/filter.component';
 
 import { SelectListItemDefinition } from './select-list.interface';
 
@@ -8,12 +17,9 @@ import { SelectListItemDefinition } from './select-list.interface';
   templateUrl: './select-list.component.html',
   styleUrls: ['./select-list.component.scss'],
 })
-export class SelectListComponent implements OnInit {
+export class SelectListComponent implements OnInit, AfterContentInit {
   @Input()
   items: SelectListItemDefinition[] = [];
-
-  @Input()
-  allowFilter = false;
 
   @Input()
   allowMultiple = true;
@@ -24,19 +30,27 @@ export class SelectListComponent implements OnInit {
   @ContentChild('listItemTmpl')
   listItemTemplateRef!: TemplateRef<any>;
 
+  @ContentChild(FilterComponent)
+  filterCmp!: FilterComponent;
+
   filteredItems!: SelectListItemDefinition[];
 
   selectedListItem!: SelectListItemDefinition | null;
-  search$ = new Subject<string>();
 
   ngOnInit() {
     this.filteredItems = this.items;
 
-    this.selectedListItem = this.items.find(item => !!item.value) ?? null;
+    this.selectedListItem = this.items.find((item) => !!item.value) ?? null;
+  }
 
-    this.search$.subscribe(term => {
-      this.filteredItems = this.items.filter(item => item.name.toLowerCase().includes(term));
-    });
+  ngAfterContentInit() {
+    if (this.filterCmp) {
+      this.filterCmp.search$.subscribe((term) => {
+        this.filteredItems = this.items.filter((item) =>
+          item.name.toLowerCase().includes(term)
+        );
+      });
+    }
   }
 
   onListChange() {
@@ -45,7 +59,8 @@ export class SelectListComponent implements OnInit {
   }
 
   onSingleChange(selectedId: number) {
-    this.selectedListItem = this.items.find(item => item.id === selectedId) ?? null;
+    this.selectedListItem =
+      this.items.find((item) => item.id === selectedId) ?? null;
     const selected = this.selectedListItem ? [this.selectedListItem] : [];
 
     this.selectedChange.next(selected);

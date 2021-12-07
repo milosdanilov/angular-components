@@ -1,8 +1,10 @@
 <app-select-list
   [items]="listItems"
-  [allowFilter]="true"
   [allowMultiple]="false"
-  (selectedChange)="onSelectedChange($event)">
+  (selectedChange)="onSelectedChange($event)"
+>
+  <app-filter></app-filter>
+
   <span>Selected: {{ selectedListItems[0]?.name }}</span>
 
   <ng-template #listItemTmpl let-listItem>

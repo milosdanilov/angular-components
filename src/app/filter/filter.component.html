@@ -6,6 +6,6 @@
     placeholder="Type to filter..."
     [ngModel]="searchTerm"
     [ngModelOptions]="{ standalone: true }"
-    (ngModelChange)="searchChange.emit($event)"
+    (ngModelChange)="search$.next($event)"
   />
 </form>
