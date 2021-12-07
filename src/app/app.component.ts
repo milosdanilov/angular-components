@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SelectListItemDefinition } from './select-list/select-list.interface';
 
 @Component({
@@ -6,7 +6,7 @@ import { SelectListItemDefinition } from './select-list/select-list.interface';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   listItems: SelectListItemDefinition[] = [
     {
       id: 1,
@@ -28,7 +28,14 @@ export class AppComponent {
     },
   ];
 
-  onSelectedChange(event: SelectListItemDefinition[]) {
-    console.log(event);
+  selectedListItems!: SelectListItemDefinition[];
+
+  ngOnInit() {
+    const c = this.listItems.find(item => item.value);
+    this.selectedListItems = c ? [c] : [];
+  }
+
+  onSelectedChange(list: SelectListItemDefinition[]) {
+    this.selectedListItems = list;
   }
 }

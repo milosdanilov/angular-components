@@ -10,6 +10,10 @@
   />
 </form>
 
+<div *ngIf="!allowMultiple">
+  <ng-content></ng-content>
+</div>
+
 <div class="list-group mx-0">
   <label
     *ngFor="let listItem of filteredItems"

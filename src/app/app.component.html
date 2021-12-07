@@ -2,5 +2,6 @@
   [items]="listItems"
   [allowFilter]="true"
   [allowMultiple]="false"
-  (selectedChange)="onSelectedChange($event)"
-></app-select-list>
+  (selectedChange)="onSelectedChange($event)">
+  <span>Selected: {{ selectedListItems[0]?.name }}</span>
+</app-select-list>
