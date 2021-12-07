@@ -24,12 +24,10 @@ export class SelectListComponent implements OnInit {
   @ContentChild('listItemTmpl')
   listItemTemplateRef!: TemplateRef<any>;
 
-  searchTerm: string = '';
-  search$ = new Subject<string>();
-
   filteredItems!: SelectListItemDefinition[];
 
   selectedListItem!: SelectListItemDefinition | null;
+  search$ = new Subject<string>();
 
   ngOnInit() {
     this.filteredItems = this.items;

@@ -1,14 +1,7 @@
-<form *ngIf="allowFilter" class="mb-2">
-  <input
-    type="search"
-    class="form-control"
-    autocomplete="false"
-    placeholder="Type to filter..."
-    [ngModel]="searchTerm"
-    [ngModelOptions]="{ standalone: true }"
-    (ngModelChange)="search$.next($event)"
-  />
-</form>
+<app-filter
+  *ngIf="allowFilter"
+  (searchChange)="search$.next($event)"
+></app-filter>
 
 <div *ngIf="!allowMultiple">
   <ng-content></ng-content>
@@ -38,7 +31,7 @@
 
     <ng-container
       [ngTemplateOutlet]="listItemTemplateRef"
-      [ngTemplateOutletContext]="{ $implicit: listItem }"></ng-container>
-
+      [ngTemplateOutletContext]="{ $implicit: listItem }"
+    ></ng-container>
   </label>
 </div>

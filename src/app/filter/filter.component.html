@@ -1,0 +1,11 @@
+<form class="mb-2">
+  <input
+    type="search"
+    class="form-control"
+    autocomplete="false"
+    placeholder="Type to filter..."
+    [ngModel]="searchTerm"
+    [ngModelOptions]="{ standalone: true }"
+    (ngModelChange)="searchChange.emit($event)"
+  />
+</form>
